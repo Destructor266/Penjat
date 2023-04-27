@@ -20,94 +20,107 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/letter1"
+        android:id="@+id/tvLetter1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginBottom="28dp"
         android:text="X"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/tilLetter"
+        app:layout_constraintStart_toStartOf="@+id/tilLetter"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.985" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/tilLetter"
         android:layout_width="325dp"
         android:layout_height="57dp"
         android:layout_marginBottom="289dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/letter3"
-        app:layout_constraintStart_toEndOf="@+id/letter3">
+        app:layout_constraintEnd_toEndOf="@+id/tvLetter3"
+        app:layout_constraintStart_toEndOf="@+id/tvLetter3">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Entra una lletra de la paraula" />
+            android:hint="Lletra"
+            android:text="Entra una lletra de la paraula" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/letter2"
+        android:id="@+id/tvLetter2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
         android:layout_marginEnd="66dp"
         android:layout_marginBottom="28dp"
         android:text="X"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintEnd_toStartOf="@+id/letter3"
-        app:layout_constraintStart_toStartOf="@+id/letter1"
+        app:layout_constraintBottom_toTopOf="@+id/tilLetter"
+        app:layout_constraintEnd_toStartOf="@+id/tvLetter3"
+        app:layout_constraintStart_toStartOf="@+id/tvLetter1"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.985" />
 
     <TextView
-        android:id="@+id/letter6"
+        android:id="@+id/tvLetter5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="28dp"
         android:text="X"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/tilLetter"
+        app:layout_constraintEnd_toEndOf="@+id/tilLetter"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.985" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="109dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="109dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/letter1"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        android:text="Add"
+        app:layout_constraintEnd_toEndOf="@+id/tilLetter"
+        app:layout_constraintStart_toStartOf="@+id/tvLetter1"
+        app:layout_constraintTop_toBottomOf="@+id/tilLetter" />
 
     <TextView
-        android:id="@+id/letter3"
+        android:id="@+id/tvLetter3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="X"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintBottom_toTopOf="@+id/tilLetter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.985" />
 
     <TextView
-        android:id="@+id/letter5"
+        android:id="@+id/tvLetter4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="81dp"
         android:layout_marginEnd="82dp"
         android:layout_marginBottom="28dp"
         android:text="X"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/letter3"
+        app:layout_constraintBottom_toTopOf="@+id/tilLetter"
+        app:layout_constraintEnd_toEndOf="@+id/tilLetter"
+        app:layout_constraintStart_toStartOf="@+id/tvLetter3"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.985" />
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="318dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="52dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAdd"
+        app:layout_constraintVertical_bias="0.025" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
