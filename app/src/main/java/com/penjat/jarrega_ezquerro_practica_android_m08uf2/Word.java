@@ -1,8 +1,8 @@
 package com.penjat.jarrega_ezquerro_practica_android_m08uf2;
 
 public class Word {
-    private String id;
-    private String word;
+    public String id;
+    public String word;
 
     public Word() {
     }
@@ -19,4 +19,5 @@ public class Word {
     public String getWord() {
         return word;
     }
+
 }
