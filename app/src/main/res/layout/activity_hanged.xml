@@ -114,8 +114,8 @@
 
     <TextView
         android:id="@+id/tvQuestion"
-        android:layout_width="318dp"
-        android:layout_height="24dp"
+        android:layout_width="326dp"
+        android:layout_height="43dp"
         android:layout_marginTop="52dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -123,5 +123,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btAdd"
         app:layout_constraintVertical_bias="0.025" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@android:drawable/ic_media_play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

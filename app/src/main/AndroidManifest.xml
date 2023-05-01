@@ -24,6 +24,12 @@
         <activity
             android:name=".HangedActivity">
         </activity>
+        <service
+            android:name=".MusicService"
+            android:label="@string/app_name" />
+        <service
+            android:name=".SFXService"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
