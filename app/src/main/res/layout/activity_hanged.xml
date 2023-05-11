@@ -8,16 +8,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="187dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="45dp"
-        android:contentDescription="Penjat"
+        android:layout_width="316dp"
+        android:layout_height="204dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLetter3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/sprite" />
 
     <TextView
         android:id="@+id/tvLetter1"
@@ -27,9 +24,7 @@
         android:layout_marginBottom="28dp"
         android:text="X"
         app:layout_constraintBottom_toTopOf="@+id/tilLetter"
-        app:layout_constraintStart_toStartOf="@+id/tilLetter"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintStart_toStartOf="@+id/tilLetter" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilLetter"
@@ -46,6 +41,7 @@
             android:layout_height="match_parent"
             android:hint="Lletra"
             android:text="Entra una lletra de la paraula" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -58,9 +54,7 @@
         android:text="X"
         app:layout_constraintBottom_toTopOf="@+id/tilLetter"
         app:layout_constraintEnd_toStartOf="@+id/tvLetter3"
-        app:layout_constraintStart_toStartOf="@+id/tvLetter1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintStart_toStartOf="@+id/tvLetter1" />
 
     <TextView
         android:id="@+id/tvLetter5"
@@ -70,9 +64,7 @@
         android:layout_marginBottom="28dp"
         android:text="X"
         app:layout_constraintBottom_toTopOf="@+id/tilLetter"
-        app:layout_constraintEnd_toEndOf="@+id/tilLetter"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintEnd_toEndOf="@+id/tilLetter" />
 
     <Button
         android:id="@+id/btAdd"
@@ -94,9 +86,7 @@
         android:text="X"
         app:layout_constraintBottom_toTopOf="@+id/tilLetter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvLetter4"
@@ -108,9 +98,7 @@
         android:text="X"
         app:layout_constraintBottom_toTopOf="@+id/tilLetter"
         app:layout_constraintEnd_toEndOf="@+id/tilLetter"
-        app:layout_constraintStart_toStartOf="@+id/tvLetter3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.985" />
+        app:layout_constraintStart_toStartOf="@+id/tvLetter3" />
 
     <TextView
         android:id="@+id/tvQuestion"

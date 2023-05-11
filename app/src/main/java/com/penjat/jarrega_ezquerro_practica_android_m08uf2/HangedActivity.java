@@ -1,10 +1,13 @@
 package com.penjat.jarrega_ezquerro_practica_android_m08uf2;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +31,9 @@ public class HangedActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private TextInputEditText txtlletra;
     private TextView txtQuestion;
+    private ImageView imageView;
+
+    private AnimationDrawable animationDrawable;
     private Intent intentM, intentSFX;
     private DatabaseReference DBHangedMan;
     private DatabaseReference BDHangedManWords;
@@ -41,29 +47,29 @@ public class HangedActivity extends AppCompatActivity {
 
     private String word;
     private String question;
-
     private boolean isReproduint = false;
-    private  boolean isCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hanged);
 
-        intentM= new Intent(this, MusicService.class);
+        intentM = new Intent(this, MusicService.class);
         intentM.putExtra("operacio", "inici");
         startService(intentM);
 
-        intentSFX= new Intent(this, SFXService.class);
+        intentSFX = new Intent(this, SFXService.class);
 
         DBHangedMan = FirebaseDatabase.getInstance().getReference("HangedMan");
         BDHangedManWords = DBHangedMan.child("Words");
         BDHangedManQuestions = DBHangedMan.child("Questions");
 
+        imageView = findViewById(R.id.imageView);
         txtlletra = findViewById(R.id.tieLletra);
         afegirLletra = findViewById(R.id.btAdd);
         fab = findViewById(R.id.floatingActionButton);
         fab.setImageResource(android.R.drawable.ic_media_pause);
+        imageView.setBackgroundResource(R.drawable.sprite);
 
         alw = new ArrayList<Word>();
         alq = new ArrayList<Question>();
@@ -77,15 +83,17 @@ public class HangedActivity extends AppCompatActivity {
 
         random = new Random();
 
+        animationDrawable = (AnimationDrawable) imageView.getBackground();
+
+
         afegirLletra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println(alw.size());
                 System.out.println(alq.size());
-                isCorrect = comprovacioLletra(word);
-                PlaySFX(isCorrect);
+                comprovacioLletra(word);
+                //animationDrawable.start();
             }
-
         });
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +102,7 @@ public class HangedActivity extends AppCompatActivity {
                 if (!isReproduint){
                     isReproduint = true;
                     fab.setImageResource(android.R.drawable.ic_media_pause);
-                        intentM.putExtra("operacio", "inici");
+                    intentM.putExtra("operacio", "inici");
                     startService(intentM);
                 } else {
                     isReproduint = false;
@@ -161,35 +169,38 @@ public class HangedActivity extends AppCompatActivity {
         return alq.get(idW).getQuestion();
     }
 
-    private boolean comprovacioLletra(String word){
+    private void comprovacioLletra(String word){
         String letter = this.txtlletra.getText().toString().trim();
         char[] ch = word.toCharArray();
+        boolean isCorrect = false;
+        int frame = 0;
 
         if (!TextUtils.isEmpty(letter)){
             for (int i = 0; i < ch.length; i++) {
                 if (String.valueOf(ch[i]).equalsIgnoreCase(letter)){
                     letters.get(i).setText(letter);
-                    return true;
+                    isCorrect = true;
                 }
             }
         }
 
+        if (isCorrect){
+            intentSFX.putExtra("operacio", "correct");
+            startService(intentSFX);
+        }else {
+            frame++;
+            intentSFX.putExtra("operacio", "error");
+            startService(intentSFX);
+            if (frame <= animationDrawable.getNumberOfFrames()){
+                animationDrawable.selectDrawable(frame);
+            }
+        }
+
         System.out.println("Selected word" + Arrays.toString(ch));
-        return false;
     }
 
     private void PrintQuestion(String Question){
         txtQuestion = findViewById(R.id.tvQuestion);
         txtQuestion.setText(Question);
-    }
-
-    private void PlaySFX(boolean b){
-        if (b){
-            intentSFX.putExtra("operacio", "correct");
-            startService(intentSFX);
-        }else {
-            intentSFX.putExtra("operacio", "error");
-            startService(intentSFX);
-        }
     }
 }
