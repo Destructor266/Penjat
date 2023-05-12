@@ -3,6 +3,7 @@ package com.penjat.jarrega_ezquerro_practica_android_m08uf2;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -39,6 +40,8 @@ public class HangedActivity extends AppCompatActivity {
     private DatabaseReference BDHangedManWords;
     private DatabaseReference BDHangedManQuestions;
 
+    private UITask task;
+
     private ArrayList<Word> alw;
     private ArrayList<Question> alq;
     private ArrayList<TextView> letters;
@@ -48,12 +51,16 @@ public class HangedActivity extends AppCompatActivity {
     private String word;
     private String question;
     private boolean isReproduint = false;
-    int frame = 0;
+    private int frame;
+    private int countCorrectOnes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hanged);
+
+        frame = 0;
+        countCorrectOnes = 0;
 
         intentM = new Intent(this, MusicService.class);
         intentM.putExtra("operacio", "inici");
@@ -129,12 +136,11 @@ public class HangedActivity extends AppCompatActivity {
                     alw.add(w);
                     //System.out.println(dataSnapshot);
                 }
-                word = SelectWord(random);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                System.out.println(error.getMessage());
             }
         });
 
@@ -149,12 +155,12 @@ public class HangedActivity extends AppCompatActivity {
                     alq.add(q);
                     //System.out.println(dataSnapshot);
                 }
-
+                word = SelectWord(random);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                System.out.println(error.getMessage());
             }
         });
     }
@@ -180,6 +186,7 @@ public class HangedActivity extends AppCompatActivity {
                 if (String.valueOf(ch[i]).equalsIgnoreCase(letter)){
                     letters.get(i).setText(letter);
                     isCorrect = true;
+                    countCorrectOnes += 1;
                 }
             }
         }
@@ -187,17 +194,18 @@ public class HangedActivity extends AppCompatActivity {
         if (isCorrect){
             intentSFX.putExtra("operacio", "correct");
             startService(intentSFX);
+            if (countCorrectOnes == letters.size()){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
         }else {
-            frame++;
             intentSFX.putExtra("operacio", "error");
             startService(intentSFX);
-            System.out.println(frame);
-            if (frame <= animationDrawable.getNumberOfFrames()){
-                animationDrawable.selectDrawable(frame);
-                if (frame == animationDrawable.getNumberOfFrames()){
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                }
+            task = new UITask();
+            task.execute();
+            if (frame == animationDrawable.getNumberOfFrames() - 1){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
         }
 
@@ -207,5 +215,17 @@ public class HangedActivity extends AppCompatActivity {
     private void PrintQuestion(String Question){
         txtQuestion = findViewById(R.id.tvQuestion);
         txtQuestion.setText(Question);
+    }
+
+    private class UITask extends AsyncTask<String, Void, String>{
+        @Override
+        protected String doInBackground(String... strings) {
+            frame++;
+            //System.out.println(frame);
+            if (frame <= animationDrawable.getNumberOfFrames()){
+                animationDrawable.selectDrawable(frame);
+            }
+            return String.valueOf(frame);
+        }
     }
 }

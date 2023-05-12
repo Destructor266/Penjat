@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <include
+        android:id="@+id/includeVista"
         layout="@layout/customcanvas"
         android:layout_width="326dp"
         android:layout_height="185dp"
@@ -16,20 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192" />
 
-    <TextView
-        android:id="@+id/tvTitol"
-        android:layout_width="182dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="121dp"
-        android:layout_marginBottom="291dp"
-        android:text="Penjat"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btPlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btPlay"
         android:layout_width="wrap_content"
@@ -38,6 +25,5 @@
         android:text="Play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitol" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

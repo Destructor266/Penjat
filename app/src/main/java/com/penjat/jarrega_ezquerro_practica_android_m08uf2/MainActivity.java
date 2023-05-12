@@ -3,6 +3,7 @@ package com.penjat.jarrega_ezquerro_practica_android_m08uf2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,12 +24,15 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private CustomCanvas cc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Button btJugar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cc = findViewById(R.id.vista);
         btJugar = findViewById(R.id.btPlay);
         btJugar.setOnClickListener(this);
     }
@@ -38,9 +42,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, HangedActivity.class);
         startActivity(intent);
     }
-
-
-
-
-
 }
