@@ -48,6 +48,7 @@ public class HangedActivity extends AppCompatActivity {
     private String word;
     private String question;
     private boolean isReproduint = false;
+    int frame = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +174,6 @@ public class HangedActivity extends AppCompatActivity {
         String letter = this.txtlletra.getText().toString().trim();
         char[] ch = word.toCharArray();
         boolean isCorrect = false;
-        int frame = 0;
 
         if (!TextUtils.isEmpty(letter)){
             for (int i = 0; i < ch.length; i++) {
@@ -191,8 +191,13 @@ public class HangedActivity extends AppCompatActivity {
             frame++;
             intentSFX.putExtra("operacio", "error");
             startService(intentSFX);
+            System.out.println(frame);
             if (frame <= animationDrawable.getNumberOfFrames()){
                 animationDrawable.selectDrawable(frame);
+                if (frame == animationDrawable.getNumberOfFrames()){
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         }
 
