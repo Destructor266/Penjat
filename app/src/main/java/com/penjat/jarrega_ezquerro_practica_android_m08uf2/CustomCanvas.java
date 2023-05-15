@@ -24,6 +24,6 @@ public class CustomCanvas extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawText(text, (float)getWidth()/2, (float)getHeight()/2, paint);
+        canvas.drawText(text, 200f, 70f, paint);
     }
 }
