@@ -1,5 +1,6 @@
 package com.penjat.jarrega_ezquerro_practica_android_m08uf2;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -196,7 +198,21 @@ public class HangedActivity extends AppCompatActivity {
             startService(intentSFX);
             if (countCorrectOnes == letters.size()){
                 Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                // Configura el titulo.
+                alertDialogBuilder.setTitle("End of the game");
+
+                // Configura el mensaje.
+                alertDialogBuilder
+                        .setMessage("You've win")
+                        .setCancelable(false)
+                        .setPositiveButton("Return to main menu",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                startActivity(intent);
+                            }
+                        })
+                        .create().show();
             }
         }else {
             intentSFX.putExtra("operacio", "error");
@@ -205,7 +221,21 @@ public class HangedActivity extends AppCompatActivity {
             task.execute();
             if (frame == animationDrawable.getNumberOfFrames() - 1){
                 Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                // Configura el titulo.
+                alertDialogBuilder.setTitle("End of the game");
+
+                // Configura el mensaje.
+                alertDialogBuilder
+                        .setMessage("You've lost")
+                        .setCancelable(false)
+                        .setPositiveButton("Return to main menu",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                startActivity(intent);
+                            }
+                        })
+                        .create().show();
             }
         }
 
